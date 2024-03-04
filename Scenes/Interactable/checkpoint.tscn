@@ -1,0 +1,56 @@
+[gd_scene load_steps=14 format=3 uid="uid://c5ffgkareos4i"]
+
+[ext_resource type="Texture2D" uid="uid://dipkprx75do4q" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 09.png" id="1_acbiq"]
+[ext_resource type="Script" path="res://Scripts/Interactable/checkpoint.gd" id="1_nhdte"]
+[ext_resource type="Texture2D" uid="uid://byqa5suol56of" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 01.png" id="2_k3p3t"]
+[ext_resource type="Texture2D" uid="uid://bxchv1avlelbk" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 02.png" id="3_ldx8g"]
+[ext_resource type="Texture2D" uid="uid://ct1485sedyhqf" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 03.png" id="4_rc7m1"]
+[ext_resource type="Texture2D" uid="uid://c520hfiydp4mw" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 04.png" id="5_8p8gp"]
+[ext_resource type="Texture2D" uid="uid://bt7usiaycybj6" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 05.png" id="6_nnq2g"]
+[ext_resource type="Texture2D" uid="uid://cmsn8e5ostcmo" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 06.png" id="7_74crq"]
+[ext_resource type="Texture2D" uid="uid://b8jjhxeftehdg" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 07.png" id="8_5abb8"]
+[ext_resource type="Texture2D" uid="uid://d3xmcn5kdfibn" path="res://Sprites/Palm Tree Island/Sprites/Objects/Flag/Flag 08.png" id="9_soejh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3p3t"]
+size = Vector2(31, 96.5)
+
+[sub_resource type="Animation" id="Animation_wag8u"]
+resource_name = "Activated"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_k3p3t"), ExtResource("3_ldx8g"), ExtResource("4_rc7m1"), ExtResource("5_8p8gp"), ExtResource("6_nnq2g"), ExtResource("7_74crq"), ExtResource("8_5abb8"), ExtResource("9_soejh"), ExtResource("1_acbiq")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3kof2"]
+_data = {
+"Activated": SubResource("Animation_wag8u")
+}
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_nhdte")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_acbiq")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1.84, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_w3p3t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3kof2")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

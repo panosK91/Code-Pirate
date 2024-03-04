@@ -1,0 +1,115 @@
+[gd_scene load_steps=18 format=3 uid="uid://dykmxqbpfp2ye"]
+
+[ext_resource type="Texture2D" uid="uid://c8chn1mjbfeu2" path="res://Sprites/Cannon/Cannon Hit/4.png" id="1_04bsg"]
+[ext_resource type="Script" path="res://Scenes/Interactable/canon.gd" id="1_wlpr2"]
+[ext_resource type="Texture2D" uid="uid://b3e70p21lavq1" path="res://Sprites/Cannon/Cannon Fire/1.png" id="2_4imab"]
+[ext_resource type="Texture2D" uid="uid://dva17kw1nb16o" path="res://Sprites/Cannon/Cannon Fire/2.png" id="3_uifdk"]
+[ext_resource type="Texture2D" uid="uid://qmp4ntn18ngw" path="res://Sprites/Cannon/Cannon Fire/3.png" id="4_4dx6o"]
+[ext_resource type="Texture2D" uid="uid://cacin5lphmn77" path="res://Sprites/Cannon/Cannon Fire/4.png" id="5_r5mdv"]
+[ext_resource type="Texture2D" uid="uid://d3bl3s4n81dwg" path="res://Sprites/Cannon/Cannon Fire/5.png" id="6_5yexj"]
+[ext_resource type="Texture2D" uid="uid://ccyud373565np" path="res://Sprites/Cannon/Cannon Fire/6.png" id="7_5iqb4"]
+[ext_resource type="Texture2D" uid="uid://y15nj1y17sy3" path="res://Sprites/Cannon/Cannon Hit/1.png" id="8_1m4fx"]
+[ext_resource type="Texture2D" uid="uid://d8mqe1hnhtoy" path="res://Sprites/Cannon/Cannon Hit/2.png" id="9_16xet"]
+[ext_resource type="Texture2D" uid="uid://btarmk42hlqok" path="res://Sprites/Cannon/Cannon Hit/3.png" id="10_tnw0p"]
+[ext_resource type="PackedScene" uid="uid://dlorv8scfudc4" path="res://Scenes/UI/health_bar.tscn" id="12_kcml3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oc5i1"]
+size = Vector2(16, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgvsy"]
+size = Vector2(32, 21)
+
+[sub_resource type="Animation" id="Animation_0x5r2"]
+resource_name = "Fire"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_4imab"), ExtResource("3_uifdk"), ExtResource("4_4dx6o"), ExtResource("5_r5mdv"), ExtResource("6_5yexj"), ExtResource("7_5iqb4")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1qugk"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_1m4fx"), ExtResource("9_16xet"), ExtResource("10_tnw0p"), ExtResource("1_04bsg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:shooting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3sf3u"]
+_data = {
+"Fire": SubResource("Animation_0x5r2"),
+"Hit": SubResource("Animation_1qugk")
+}
+
+[node name="Canon" type="StaticBody2D" groups=["Enemies"]]
+scale = Vector2(1.27577, 1.24)
+script = ExtResource("1_wlpr2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4imab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_oc5i1")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_sgvsy")
+
+[node name="Firepoint" type="Marker2D" parent="."]
+position = Vector2(-15, -1)
+scale = Vector2(-1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3sf3u")
+}
+
+[node name="HealthBar" parent="." instance=ExtResource("12_kcml3")]
+offset_top = -15.3226
+offset_bottom = -15.3226

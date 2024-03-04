@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0635bieqy4fd"]
+
+[ext_resource type="Script" path="res://Scenes/Interactable/health_up.gd" id="1_22unh"]
+[ext_resource type="Texture2D" uid="uid://eflbto6egxr4" path="res://Sprites/Red Potion/01.png" id="1_qsgud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qh61"]
+size = Vector2(10, 16)
+
+[node name="HealthUp" type="Node2D"]
+script = ExtResource("1_22unh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qsgud")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4qh61")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,144 @@
+[gd_scene load_steps=23 format=3 uid="uid://cy14kwtt8kn3m"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/sabertooth.gd" id="1_73q10"]
+[ext_resource type="Texture2D" uid="uid://cofxgiclsvnp" path="res://Sprites/Enemies/Sabertooth/02-Run/Run 03.png" id="1_ag7dm"]
+[ext_resource type="PackedScene" uid="uid://dlorv8scfudc4" path="res://Scenes/UI/health_bar.tscn" id="2_evicl"]
+[ext_resource type="Texture2D" uid="uid://cqknunx3fb7gr" path="res://Sprites/Enemies/Sabertooth/02-Run/Run 01.png" id="2_gob0x"]
+[ext_resource type="Texture2D" uid="uid://cvc7do3uftr3e" path="res://Sprites/Enemies/Sabertooth/08-Hit/Hit 01.png" id="3_8y6gi"]
+[ext_resource type="Texture2D" uid="uid://cvo6qxnk7khkv" path="res://Sprites/Enemies/Sabertooth/02-Run/Run 02.png" id="3_jys4b"]
+[ext_resource type="Texture2D" uid="uid://cdijc545t11bc" path="res://Sprites/Enemies/Sabertooth/02-Run/Run 04.png" id="4_sl2i5"]
+[ext_resource type="Texture2D" uid="uid://ouw33ie4wb6c" path="res://Sprites/Enemies/Sabertooth/02-Run/Run 05.png" id="5_iaumu"]
+[ext_resource type="Texture2D" uid="uid://cbvw400nfvsu2" path="res://Sprites/Enemies/Sabertooth/02-Run/Run 06.png" id="6_wujs4"]
+[ext_resource type="Texture2D" uid="uid://b3tlniqb8xaer" path="res://Sprites/Enemies/Sabertooth/09-Dead Hit/Dead Hit 01.png" id="8_ds1tb"]
+[ext_resource type="Texture2D" uid="uid://c0ci0247tr47j" path="res://Sprites/Enemies/Sabertooth/09-Dead Hit/Dead Hit 02.png" id="9_jltmi"]
+[ext_resource type="Texture2D" uid="uid://cla0kq58o3vk" path="res://Sprites/Enemies/Sabertooth/09-Dead Hit/Dead Hit 03.png" id="10_ambda"]
+[ext_resource type="Texture2D" uid="uid://bkripqo7n5jtt" path="res://Sprites/Enemies/Sabertooth/09-Dead Hit/Dead Hit 04.png" id="11_1u7ix"]
+[ext_resource type="Texture2D" uid="uid://xeirbq26x3r2" path="res://Sprites/Enemies/Sabertooth/08-Hit/Hit 02.png" id="14_wnn45"]
+[ext_resource type="Texture2D" uid="uid://ck67keao6iv8h" path="res://Sprites/Enemies/Sabertooth/08-Hit/Hit 03.png" id="15_yuljj"]
+[ext_resource type="Texture2D" uid="uid://lk87pomon0d2" path="res://Sprites/Enemies/Sabertooth/08-Hit/Hit 04.png" id="16_pg7a1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jov7f"]
+size = Vector2(21.3414, 19.0845)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f8sxe"]
+
+[sub_resource type="Animation" id="Animation_m04io"]
+resource_name = "Die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_ds1tb"), ExtResource("9_jltmi"), ExtResource("10_ambda"), ExtResource("11_1u7ix")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_g4s6d"]
+resource_name = "Run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_gob0x"), ExtResource("3_jys4b"), ExtResource("1_ag7dm"), ExtResource("4_sl2i5"), ExtResource("5_iaumu"), ExtResource("6_wujs4")]
+}
+
+[sub_resource type="Animation" id="Animation_tj3a6"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.3001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_8y6gi"), ExtResource("14_wnn45"), ExtResource("15_yuljj"), ExtResource("16_pg7a1"), ExtResource("3_8y6gi")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"get_hit"
+}, {
+"args": [],
+"method": &"get_hit"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0l4m8"]
+_data = {
+"Die": SubResource("Animation_m04io"),
+"Hit": SubResource("Animation_tj3a6"),
+"Run": SubResource("Animation_g4s6d")
+}
+
+[node name="Sabertooth" type="CharacterBody2D" groups=["Enemies"]]
+scale = Vector2(2.48, 2.84)
+collision_layer = 2
+script = ExtResource("1_73q10")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_evicl")]
+offset_top = -16.1972
+offset_bottom = -16.1972
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("16_pg7a1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.201613, -0.739437)
+scale = Vector2(0.661291, 1)
+shape = SubResource("RectangleShape2D_jov7f")
+
+[node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(0.591521, 0.416142)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_f8sxe")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-9.27419, 1.40845)
+target_position = Vector2(0.806452, 14.7887)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0l4m8")
+}
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

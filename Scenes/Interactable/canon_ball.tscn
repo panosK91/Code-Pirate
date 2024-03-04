@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://oo2n5wg3uph4"]
+
+[ext_resource type="Script" path="res://Scenes/Interactable/CanonBall.gd" id="1_3xq2k"]
+[ext_resource type="Texture2D" uid="uid://cwejubui53syd" path="res://Sprites/Cannon/Cannon Ball Idle/1.png" id="2_6dp5k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o01v6"]
+radius = 7.99739
+
+[sub_resource type="Animation" id="Animation_bpts3"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fji0e"]
+_data = {
+"Hit": SubResource("Animation_bpts3")
+}
+
+[node name="CanonBall" type="Node2D"]
+script = ExtResource("1_3xq2k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6dp5k")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.520277, 0.531936)
+shape = SubResource("CircleShape2D_o01v6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fji0e")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

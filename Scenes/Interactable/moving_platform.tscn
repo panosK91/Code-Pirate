@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvbwpiengtwhp"]
+
+[ext_resource type="Script" path="res://Scenes/Interactable/moving_platform.gd" id="1_3iebu"]
+[ext_resource type="Texture2D" uid="uid://bdiivc723kgpo" path="res://Sprites/Terrain/platform.png" id="1_8rq4a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3p47"]
+size = Vector2(99, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nejpj"]
+size = Vector2(109, 33)
+
+[sub_resource type="Animation" id="Animation_etvmy"]
+resource_name = "Move"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(128, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_821om"]
+_data = {
+"Move": SubResource("Animation_etvmy")
+}
+
+[node name="MovingPlatform" type="Node2D"]
+script = ExtResource("1_3iebu")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(31.716, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("1_8rq4a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_k3p47")
+
+[node name="Area2D" type="Area2D" parent="AnimatableBody2D"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/Area2D"]
+position = Vector2(0.283951, -13)
+shape = SubResource("RectangleShape2D_nejpj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_821om")
+}
+
+[connection signal="area_entered" from="AnimatableBody2D/Area2D" to="." method="_on_area_2d_area_entered"]
