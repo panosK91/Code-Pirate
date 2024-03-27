@@ -136,10 +136,10 @@ libraries = {
 
 [node name="UIManager" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
 script = ExtResource("10_6e3n7")
 
 [node name="WinScreen" type="ColorRect" parent="UIManager"]
+visible = false
 custom_minimum_size = Vector2(240, 120)
 anchors_preset = 8
 anchor_left = 0.5
@@ -210,4 +210,49 @@ theme_override_fonts/font = ExtResource("11_24qg5")
 theme_override_font_sizes/font_size = 25
 text = "Go To Start Screen"
 
+[node name="PauseMenu" type="ColorRect" parent="UIManager"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -80.0
+offset_right = 60.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.286275, 0.286275, 0.431373, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIManager/PauseMenu"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 120.0
+offset_bottom = 150.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_24qg5")
+theme_override_font_sizes/font_size = 25
+text = "Resume"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UIManager/PauseMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Quit" type="Button" parent="UIManager/PauseMenu/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_24qg5")
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
 [connection signal="pressed" from="UIManager/WinScreen/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer/Resume" to="UIManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="UIManager/PauseMenu/VBoxContainer/HBoxContainer4/Quit" to="UIManager" method="_on_quit_pressed"]

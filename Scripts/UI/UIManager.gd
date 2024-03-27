@@ -22,6 +22,7 @@ func update_coin_display(gained_coins):
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
+		print("swwew")
 		GameManager.pause_play()
 		get_tree().paused = GameManager.paused
 
@@ -44,6 +45,8 @@ func _on_finish_level_pressed():
 
 func _on_resume_pressed():
 	GameManager.resume()
+	print("WWWWW")
+	print(GameManager.paused)
 	get_tree().paused = GameManager.paused
 
 

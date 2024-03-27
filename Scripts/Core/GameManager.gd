@@ -41,7 +41,6 @@ func win():
 	emit_signal("level_beaten")
 	win_screen.visible = true
 	
-	score_label.text = "score:" + str(score)
 	await get_tree().create_timer(2).timeout
 	get_tree().unload_current_scene()
 	#await get_tree().create_timer(5).timeout
@@ -53,6 +52,8 @@ func win():
 
 func pause_play():
 	paused = !paused
+	print("WWWWWWW")
+	print(paused)
 	pause_menu.visible = paused
 
 func show_informations(selected_checkpoint=null):
