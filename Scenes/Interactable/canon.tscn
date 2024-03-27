@@ -71,10 +71,10 @@ tracks/1/path = NodePath(".:shooting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3sf3u"]
@@ -88,7 +88,7 @@ scale = Vector2(1.27577, 1.24)
 script = ExtResource("1_wlpr2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_4imab")
+texture = ExtResource("1_04bsg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 1)

@@ -57,11 +57,8 @@ func _physics_process(delta):
 	
 	
 func attack():
-	
 	var overlapping_areas = $AttackArea.get_overlapping_areas()
-	print(overlapping_areas)
 	for area in overlapping_areas:
-		print(area.get_parent())
 		if area.get_parent().is_in_group("Enemies"):
 			area.get_parent().take_damage(1)
 	attacking = true
@@ -90,6 +87,7 @@ func take_damage(damage_amount:int):
 		GameManager.damage_taken += 1
 		
 		health -= damage_amount
+		get_node("HealthBar").update_healthbar(health, max_health)
 		
 		if health <= 0:
 			die()

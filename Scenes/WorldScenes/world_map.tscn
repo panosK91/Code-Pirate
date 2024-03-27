@@ -1,3 +1,213 @@
-[gd_scene format=3 uid="uid://dcubr0tqilr5w"]
+[gd_scene load_steps=14 format=3 uid="uid://dcubr0tqilr5w"]
+
+[ext_resource type="Texture2D" uid="uid://bp7conpyoju41" path="res://Sprites/Player/09-Idle Sword/Idle Sword 01.png" id="1_iyyhw"]
+[ext_resource type="Script" path="res://Scripts/Core/WorldMap.gd" id="1_n0mcc"]
+[ext_resource type="Texture2D" uid="uid://b26dmaaljmqtr" path="res://Sprites/Background/world-map.png" id="1_t3p8e"]
+[ext_resource type="Script" path="res://Scripts/Core/WorldMapLevel.gd" id="2_2v4fh"]
+[ext_resource type="Texture2D" uid="uid://dx3w066h4wk63" path="res://Sprites/Background/Chest/Chest Close 01.png" id="4_e2wf2"]
+[ext_resource type="Texture2D" uid="uid://c2lf0kybqmk7t" path="res://Sprites/Player/09-Idle Sword/Idle Sword 02.png" id="6_1cjdk"]
+[ext_resource type="Texture2D" uid="uid://j3bln60f25ne" path="res://Sprites/Player/09-Idle Sword/Idle Sword 03.png" id="7_furwh"]
+[ext_resource type="Texture2D" uid="uid://dw5pkjgfcnukd" path="res://Sprites/Player/09-Idle Sword/Idle Sword 04.png" id="8_k6tiw"]
+[ext_resource type="Texture2D" uid="uid://20cj27sux4c4" path="res://Sprites/Player/09-Idle Sword/Idle Sword 05.png" id="9_cai7h"]
+[ext_resource type="Script" path="res://Scripts/UI/UIManager.gd" id="10_6e3n7"]
+[ext_resource type="FontFile" uid="uid://200xnp1te7q2" path="res://Fonts/Stepalange/StepalangeShort-p7GZd.otf" id="11_24qg5"]
+
+[sub_resource type="Animation" id="Animation_2xngi"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_iyyhw"), ExtResource("6_1cjdk"), ExtResource("7_furwh"), ExtResource("8_k6tiw"), ExtResource("9_cai7h")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3nfsk"]
+_data = {
+"Idle": SubResource("Animation_2xngi")
+}
 
 [node name="WorldMap" type="Node2D"]
+script = ExtResource("1_n0mcc")
+
+[node name="BGcolor" type="ColorRect" parent="."]
+offset_left = -1997.0
+offset_top = -1632.0
+offset_right = -997.0
+offset_bottom = -632.0
+scale = Vector2(10, 10)
+color = Color(0.803922, 0.870588, 0.529412, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+offset_left = -1576.0
+offset_top = -1142.0
+offset_right = 344.0
+offset_bottom = -62.0
+scale = Vector2(1.5523, 2.23548)
+texture = ExtResource("1_t3p8e")
+
+[node name="LevelHolder" type="Node2D" parent="."]
+
+[node name="Level1" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("right")]
+position = Vector2(-806, 347)
+script = ExtResource("2_2v4fh")
+right = NodePath("../Level2")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level1"]
+position = Vector2(-1, -24)
+scale = Vector2(3, 3)
+texture = ExtResource("4_e2wf2")
+
+[node name="Level2" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("down", "left")]
+position = Vector2(-169, 347)
+script = ExtResource("2_2v4fh")
+down = NodePath("../Level3")
+left = NodePath("../Level1")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level2"]
+position = Vector2(-3, -23)
+scale = Vector2(3, 3)
+texture = ExtResource("4_e2wf2")
+
+[node name="Level3" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("up", "right")]
+position = Vector2(-169, 1040)
+script = ExtResource("2_2v4fh")
+up = NodePath("../Level2")
+right = NodePath("../Level4")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level3"]
+position = Vector2(0, -21)
+scale = Vector2(3, 3)
+texture = ExtResource("4_e2wf2")
+
+[node name="Level4" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("up", "left")]
+position = Vector2(695, 1040)
+script = ExtResource("2_2v4fh")
+up = NodePath("../Level5")
+left = NodePath("../Level3")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level4"]
+position = Vector2(-2, -23)
+scale = Vector2(3, 3)
+texture = ExtResource("4_e2wf2")
+
+[node name="Level5" type="Node2D" parent="LevelHolder" node_paths=PackedStringArray("down", "right")]
+position = Vector2(725, 318)
+script = ExtResource("2_2v4fh")
+down = NodePath("../Level4")
+right = NodePath("../Level6")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level5"]
+position = Vector2(3, -14)
+scale = Vector2(3, 3)
+texture = ExtResource("4_e2wf2")
+
+[node name="Level6" type="Node2D" parent="LevelHolder"]
+position = Vector2(1246, 318)
+script = ExtResource("2_2v4fh")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelHolder/Level6"]
+position = Vector2(-1, -18)
+scale = Vector2(3, 3)
+texture = ExtResource("4_e2wf2")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(-804, 324)
+scale = Vector2(2.7798, 2.42149)
+texture = ExtResource("7_furwh")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-0.359711, 10.3242)
+scale = Vector2(5.83487, 1.28082)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_3nfsk")
+}
+
+[node name="UIManager" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("10_6e3n7")
+
+[node name="WinScreen" type="ColorRect" parent="UIManager"]
+custom_minimum_size = Vector2(240, 120)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -112.0
+offset_right = 700.0
+offset_bottom = 277.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.286275, 0.286275, 0.431373, 1)
+
+[node name="Label" type="Label" parent="UIManager/WinScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_right = 42.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.92549, 1)
+theme_override_fonts/font = ExtResource("11_24qg5")
+theme_override_font_sizes/font_size = 40
+text = "The Final Triumph of Captain Codebeard"
+
+[node name="MarginContainer" type="MarginContainer" parent="UIManager/WinScreen"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 23.0
+offset_right = 1.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIManager/WinScreen/MarginContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UIManager/WinScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.87451, 0.87451, 0.92549, 1)
+theme_override_fonts/normal_font = ExtResource("11_24qg5")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "\"Ahoy, Captain Codebeard!\" the voice of the Ancient Compiler booms across the seas, echoing through the realms of variables, conditional caves, loop lagoons, function falls, and the depths of data structures.  Thou hast navigated the treacherous waters of programming with unparalleled bravery and intellect, unraveling the mysteries of code and claiming the treasure of programming mastery.
+
+The air shimmers, and before our hero materializes the Legendary Chest of Code, an artifact of untold power and wisdom. \"This chest contains the ultimate treasure, Captain,\" the Ancient Compiler continues, \"the knowledge and experience you've gained. With these, you can craft worlds, solve the grandest of problems, and embark on new adventures across the digital seas.\""
+fit_content = true
+
+[node name="Button" type="Button" parent="UIManager/WinScreen"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 348.0
+offset_right = 522.0
+offset_bottom = 380.0
+theme_override_colors/font_color = Color(0.87451, 0.87451, 0.92549, 1)
+theme_override_fonts/font = ExtResource("11_24qg5")
+theme_override_font_sizes/font_size = 25
+text = "Go To Start Screen"
+
+[connection signal="pressed" from="UIManager/WinScreen/Button" to="." method="_on_button_pressed"]

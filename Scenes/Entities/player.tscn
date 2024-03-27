@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://dqwhr13wdfof7"]
+[gd_scene load_steps=35 format=3 uid="uid://dqwhr13wdfof7"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_jvk2y"]
 [ext_resource type="Texture2D" uid="uid://beims68ttkhae" path="res://Sprites/Player/14-Hit Sword/Hit Sword 01.png" id="2_8ypni"]
+[ext_resource type="PackedScene" uid="uid://dlorv8scfudc4" path="res://Scenes/UI/health_bar.tscn" id="2_84xp1"]
 [ext_resource type="Texture2D" uid="uid://bp7conpyoju41" path="res://Sprites/Player/09-Idle Sword/Idle Sword 01.png" id="2_crgdx"]
 [ext_resource type="Texture2D" uid="uid://b8daqokisoyrm" path="res://Sprites/Player/10-Run Sword/Run Sword 04.png" id="2_gt88j"]
 [ext_resource type="Texture2D" uid="uid://dnuks4mml3nru" path="res://Sprites/Player/16-Attack 2/Attack 2 02.png" id="2_jbvui"]
@@ -77,6 +78,35 @@ tracks/0/keys = {
 "values": [ExtResource("7_6je4c")]
 }
 
+[sub_resource type="Animation" id="Animation_a53p1"]
+resource_name = "Hit"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_8ypni"), ExtResource("21_g63p2"), ExtResource("22_bfk64"), ExtResource("23_vsqlt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hit")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_12rur"]
 resource_name = "Idle"
 length = 0.5
@@ -127,35 +157,6 @@ tracks/0/keys = {
 "values": [ExtResource("12_4nn1t"), ExtResource("13_lmlj4"), ExtResource("14_efrlp"), ExtResource("2_gt88j"), ExtResource("15_22kud"), ExtResource("16_jabkc")]
 }
 
-[sub_resource type="Animation" id="Animation_a53p1"]
-resource_name = "Hit"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("2_8ypni"), ExtResource("21_g63p2"), ExtResource("22_bfk64"), ExtResource("23_vsqlt")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:hit")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m8i63"]
 _data = {
 "Attack": SubResource("Animation_aj64a"),
@@ -174,6 +175,12 @@ script = ExtResource("1_jvk2y")
 speed = 200.0
 jump_height = -500.0
 
+[node name="HealthBar" parent="." instance=ExtResource("2_84xp1")]
+offset_left = 0.962723
+offset_top = -20.1402
+offset_right = 0.962723
+offset_bottom = -20.1402
+
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false
 
@@ -190,7 +197,6 @@ scale = Vector2(0.45108, 1)
 shape = SubResource("RectangleShape2D_t25he")
 
 [node name="AttackArea" type="Area2D" parent="."]
-scale = Vector2(1, 1)
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]

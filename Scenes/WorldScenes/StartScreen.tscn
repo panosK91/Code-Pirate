@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjfclbggkyvai"]
+
+[ext_resource type="Texture2D" uid="uid://dysoonlruon64" path="res://Sprites/Background/Background.png" id="1_4rfg5"]
+[ext_resource type="Script" path="res://Scripts/UI/StartScreen.gd" id="1_4yqwl"]
+[ext_resource type="FontFile" uid="uid://200xnp1te7q2" path="res://Fonts/Stepalange/StepalangeShort-p7GZd.otf" id="2_f44t7"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_4yqwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(970, 530)
+texture = ExtResource("1_4rfg5")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 174.0
+offset_top = 86.0
+offset_right = 1889.0
+offset_bottom = 671.0
+theme_override_colors/default_color = Color(0.0666667, 0.164706, 0.27451, 1)
+theme_override_colors/font_selected_color = Color(0.0666667, 0.164706, 0.27451, 1)
+theme_override_fonts/normal_font = ExtResource("2_f44t7")
+theme_override_font_sizes/normal_font_size = 40
+text = "Welcome to \"Codebeard's Quest: The Programmer's Odyssey\"
+
+Embark on an epic journey with Captain Codebeard through the mystic realms of coding. Navigate through the Isle of Variables, delve into the Conditional Caves, and sail across the Loop Lagoon. Unravel the mysteries of Function Falls, decipher the enigmas of the Data Structure Depths, and conquer the vast OOP Ocean.
+
+In this adventure, you'll unlock the treasures of programming knowledge, from the basics of syntax to the secrets of object-oriented principles. Each level is a step on your path to becoming a programming master, where challenges await to test your wit, resolve, and coding skills.
+
+Are you ready to hoist the sails and set forth on this coding adventure? Gather your courage, sharpen your mind, and let the odyssey begin!
+
+Press 'Start Game' to embark on your quest."
+
+[node name="Start" type="Button" parent="."]
+offset_left = 760.0
+offset_top = 723.0
+offset_right = 968.0
+offset_bottom = 763.0
+theme_override_colors/font_color = Color(0.709804, 0.764706, 0.709804, 1)
+theme_override_fonts/font = ExtResource("2_f44t7")
+theme_override_font_sizes/font_size = 30
+text = "Start Game"
+
+[node name="Start2" type="Button" parent="."]
+offset_left = 760.0
+offset_top = 820.0
+offset_right = 968.0
+offset_bottom = 860.0
+theme_override_colors/font_color = Color(0.709804, 0.764706, 0.709804, 1)
+theme_override_fonts/font = ExtResource("2_f44t7")
+theme_override_font_sizes/font_size = 30
+text = "Close Game"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Start2" to="." method="_on_start_2_pressed"]

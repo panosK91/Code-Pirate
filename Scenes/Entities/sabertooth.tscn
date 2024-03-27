@@ -52,23 +52,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_g4s6d"]
-resource_name = "Run"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("2_gob0x"), ExtResource("3_jys4b"), ExtResource("1_ag7dm"), ExtResource("4_sl2i5"), ExtResource("5_iaumu"), ExtResource("6_wujs4")]
-}
-
 [sub_resource type="Animation" id="Animation_tj3a6"]
 resource_name = "Hit"
 length = 0.3
@@ -100,6 +83,23 @@ tracks/1/keys = {
 "args": [],
 "method": &"get_hit"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_g4s6d"]
+resource_name = "Run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_gob0x"), ExtResource("3_jys4b"), ExtResource("1_ag7dm"), ExtResource("4_sl2i5"), ExtResource("5_iaumu"), ExtResource("6_wujs4")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0l4m8"]
@@ -135,6 +135,15 @@ shape = SubResource("CapsuleShape2D_f8sxe")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-9.27419, 1.40845)
 target_position = Vector2(0.806452, 14.7887)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(9.27419, 1.05634)
+target_position = Vector2(6.85484, 0)
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2(-9.27419, 0.704225)
+rotation = -2.76336
+target_position = Vector2(6.09446, -3.21594)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

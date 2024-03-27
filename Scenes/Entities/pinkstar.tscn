@@ -1,0 +1,153 @@
+[gd_scene load_steps=23 format=3 uid="uid://qqtcjo55k7yc"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/sabertooth.gd" id="1_ymb4b"]
+[ext_resource type="PackedScene" uid="uid://dlorv8scfudc4" path="res://Scenes/UI/health_bar.tscn" id="2_ukk0c"]
+[ext_resource type="Texture2D" uid="uid://c4seivv5keko1" path="res://Sprites/Enemies/PinkStar/09-Dead Hit/Dead Hit 01.png" id="4_7c5gw"]
+[ext_resource type="Texture2D" uid="uid://b8b0peiyuir7r" path="res://Sprites/Enemies/PinkStar/09-Dead Hit/Dead Hit 02.png" id="5_570pd"]
+[ext_resource type="Texture2D" uid="uid://cj0oivdjag86e" path="res://Sprites/Enemies/PinkStar/09-Dead Hit/Dead Hit 03.png" id="6_leuwl"]
+[ext_resource type="Texture2D" uid="uid://c2r516shj1qx7" path="res://Sprites/Enemies/PinkStar/09-Dead Hit/Dead Hit 04.png" id="7_1ks54"]
+[ext_resource type="Texture2D" uid="uid://cqggmnqqrtup7" path="res://Sprites/Enemies/PinkStar/08-Hit/Hit 01.png" id="8_hljlf"]
+[ext_resource type="Texture2D" uid="uid://dromr88gl28ek" path="res://Sprites/Enemies/PinkStar/08-Hit/Hit 02.png" id="9_h7gpo"]
+[ext_resource type="Texture2D" uid="uid://duddfq4emq4fg" path="res://Sprites/Enemies/PinkStar/08-Hit/Hit 03.png" id="10_5m30h"]
+[ext_resource type="Texture2D" uid="uid://b4vjw3pmtqs74" path="res://Sprites/Enemies/PinkStar/08-Hit/Hit 04.png" id="11_cev4u"]
+[ext_resource type="Texture2D" uid="uid://bce0b7lg6p0e5" path="res://Sprites/Enemies/PinkStar/02-Run/Run 01.png" id="12_761u5"]
+[ext_resource type="Texture2D" uid="uid://bodfqtpxbkhlw" path="res://Sprites/Enemies/PinkStar/02-Run/Run 02.png" id="13_2dybo"]
+[ext_resource type="Texture2D" uid="uid://2cq3wxqdqpw0" path="res://Sprites/Enemies/PinkStar/02-Run/Run 03.png" id="14_xmap2"]
+[ext_resource type="Texture2D" uid="uid://dr3mtlvtft27a" path="res://Sprites/Enemies/PinkStar/02-Run/Run 04.png" id="15_hwtlc"]
+[ext_resource type="Texture2D" uid="uid://dkh7kq007yai4" path="res://Sprites/Enemies/PinkStar/02-Run/Run 05.png" id="16_18f4k"]
+[ext_resource type="Texture2D" uid="uid://dgcuw1s0rd3im" path="res://Sprites/Enemies/PinkStar/02-Run/Run 06.png" id="17_j7d0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jov7f"]
+size = Vector2(21.3414, 19.0845)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f8sxe"]
+
+[sub_resource type="Animation" id="Animation_m04io"]
+resource_name = "Die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_7c5gw"), ExtResource("5_570pd"), ExtResource("6_leuwl"), ExtResource("7_1ks54")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tj3a6"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_hljlf"), ExtResource("9_h7gpo"), ExtResource("10_5m30h"), ExtResource("11_cev4u")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"get_hit"
+}, {
+"args": [],
+"method": &"get_hit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_g4s6d"]
+resource_name = "Run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_761u5"), ExtResource("13_2dybo"), ExtResource("14_xmap2"), ExtResource("15_hwtlc"), ExtResource("16_18f4k"), ExtResource("17_j7d0s")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0l4m8"]
+_data = {
+"Die": SubResource("Animation_m04io"),
+"Hit": SubResource("Animation_tj3a6"),
+"Run": SubResource("Animation_g4s6d")
+}
+
+[node name="pinkstar" type="CharacterBody2D" groups=["Enemies"]]
+scale = Vector2(2.48, 2.84)
+collision_layer = 2
+script = ExtResource("1_ymb4b")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_ukk0c")]
+offset_top = -16.1972
+offset_bottom = -16.1972
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("12_761u5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.201613, -0.739437)
+scale = Vector2(0.661291, 1)
+shape = SubResource("RectangleShape2D_jov7f")
+
+[node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(0.591521, 0.416142)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_f8sxe")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-9.27419, 1.40845)
+target_position = Vector2(0.806452, 14.7887)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(9.27419, 1.05634)
+target_position = Vector2(6.85484, 0)
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2(-9.27419, 0.704225)
+rotation = -2.76336
+target_position = Vector2(6.09446, -3.21594)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0l4m8")
+}
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
